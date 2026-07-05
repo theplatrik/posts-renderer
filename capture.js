@@ -16,10 +16,13 @@ const { chromium } = require("playwright");
     waitUntil: "networkidle"
   });
 
-  await page.screenshot({
-    path: "slide1.png",
-    fullPage: true
+  const slides = await page.$$(".slide");
+
+for (let i = 0; i < slides.length; i++) {
+  await slides[i].screenshot({
+    path: `slide${i + 1}.png`
   });
+}
 
   await browser.close();
 })();
