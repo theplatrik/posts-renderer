@@ -1,0 +1,29 @@
+name: Render Carousel
+
+on:
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: |
+          npm init -y
+          npm install playwright
+          npx playwright install chromium
+
+      - name: Show Repository Files
+        run: ls -R
+
+      - name: Done
+        run: echo "Workflow is working successfully."
