@@ -16,6 +16,13 @@ const { chromium } = require("playwright");
     waitUntil: "networkidle"
   });
 
+await page.evaluate(() => {
+  const toolbar = document.getElementById("toolbar");
+  if (toolbar) {
+    toolbar.style.display = "none";
+  }
+});
+  
   const slides = await page.$$(".slide");
 
 for (let i = 0; i < slides.length; i++) {
